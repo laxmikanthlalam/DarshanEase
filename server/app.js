@@ -1,7 +1,9 @@
-const templeRoutes = require("./routes/temple.routes");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const templeRoutes = require("./routes/temple.routes");
+const slotRoutes = require("./routes/slot.routes");
+const bookingRoutes = require("./routes/booking.routes");
 
 // Routes
 const authRoutes = require("./routes/auth.routes");
@@ -26,5 +28,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/temples", templeRoutes);
+app.use("/api/slots", slotRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 module.exports = app;
