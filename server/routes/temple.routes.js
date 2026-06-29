@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+const authMiddleware = require("../middleware/auth.middleware");
+const adminMiddleware = require("../middleware/admin.middleware");
+
 const {
   createTempleController,
   getAllTemplesController,
@@ -9,19 +12,34 @@ const {
   deleteTempleController,
 } = require("../controllers/temple.controller");
 
-// Create Temple
-router.post("/", createTempleController);
+// Create Temple (Admin Only)
+router.post(
+  "/",
+  authMiddleware,
+  adminMiddleware,
+  createTempleController
+);
 
-// Get All Temples
+// Get All Temples (Public)
 router.get("/", getAllTemplesController);
 
-// Get Temple By ID
+// Get Temple By ID (Public)
 router.get("/:id", getTempleByIdController);
 
-// Update Temple
-router.put("/:id", updateTempleController);
+// Update Temple (Admin Only)
+router.put(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  updateTempleController
+);
 
-// Delete Temple
-router.delete("/:id", deleteTempleController);
+// Delete Temple (Admin Only)
+router.delete(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  deleteTempleController
+);
 
 module.exports = router;

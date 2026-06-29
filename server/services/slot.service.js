@@ -28,10 +28,16 @@ const deleteSlot = async (id) => {
   return await Slot.findByIdAndDelete(id);
 };
 
+// Get Slots By Temple
+const getSlotsByTemple = async (templeId) => {
+  return await Slot.find({ temple: templeId });
+};
+
 module.exports = {
   createSlot,
   getAllSlots,
   getSlotById,
+  getSlotsByTemple,
   updateSlot,
   deleteSlot,
 };

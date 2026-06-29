@@ -2,6 +2,7 @@ const {
   createSlot,
   getAllSlots,
   getSlotById,
+  getSlotsByTemple,
   updateSlot,
   deleteSlot,
 } = require("../services/slot.service");
@@ -126,10 +127,29 @@ const deleteSlotController = async (req, res) => {
   }
 };
 
+// Get Slots By Temple
+const getSlotsByTempleController = async (req, res) => {
+  try {
+    const slots = await getSlotsByTemple(req.params.templeId);
+
+    res.status(200).json({
+      success: true,
+      count: slots.length,
+      data: slots,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createSlotController,
   getAllSlotsController,
   getSlotByIdController,
+  getSlotsByTempleController,
   updateSlotController,
   deleteSlotController,
 };

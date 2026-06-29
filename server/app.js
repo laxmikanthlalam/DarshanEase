@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const templeRoutes = require("./routes/temple.routes");
 const slotRoutes = require("./routes/slot.routes");
 const bookingRoutes = require("./routes/booking.routes");
+const adminRoutes = require("./routes/admin.routes");
 
 // Routes
 const authRoutes = require("./routes/auth.routes");
@@ -15,6 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+
 
 // Test Route
 app.get("/", (req, res) => {
@@ -30,5 +32,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/temples", templeRoutes);
 app.use("/api/slots", slotRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/admin", adminRoutes);
 
 module.exports = app;
