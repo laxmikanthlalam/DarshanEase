@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 
 function Temples() {
   const [temples, setTemples] = useState([]);
-  const [loading, setLoading] = useState(true);
+const [filteredTemples, setFilteredTemples] = useState([]);
+
+const [search, setSearch] = useState("");
+const [stateFilter, setStateFilter] = useState("");
+const [cityFilter, setCityFilter] = useState("");
+
+const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchTemples();
@@ -14,12 +20,39 @@ function Temples() {
     try {
       const response = await api.get("/temples");
       setTemples(response.data.data);
+      setFilteredTemples(response.data.data);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
   };
+   
+  useEffect(() => {
+  let filtered = temples;
+
+  if (search) {
+    filtered = filtered.filter((temple) =>
+      temple.name
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    );
+  }
+
+  if (stateFilter) {
+    filtered = filtered.filter(
+      (temple) => temple.state === stateFilter
+    );
+  }
+
+  if (cityFilter) {
+    filtered = filtered.filter(
+      (temple) => temple.city === cityFilter
+    );
+  }
+
+  setFilteredTemples(filtered);
+}, [search, stateFilter, cityFilter, temples]);
 
   if (loading) {
     return (
@@ -33,8 +66,77 @@ function Temples() {
     <div className="container mt-5">
       <h2 className="mb-4">All Temples</h2>
 
+      <div className="row mb-4">
+
+  <div className="col-md-4 mb-2">
+    <input
+      type="text"
+      className="form-control"
+      placeholder="🔍 Search Temple..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+  </div>
+
+  <div className="col-md-4 mb-2">
+    <select
+      className="form-select"
+      value={stateFilter}
+      onChange={(e) => {
+        setStateFilter(e.target.value);
+        setCityFilter("");
+      }}
+    >
+      <option value="">All States</option>
+
+      {[...new Set(temples.map((t) => t.state))].map(
+        (state) => (
+          <option key={state} value={state}>
+            {state}
+          </option>
+        )
+      )}
+    </select>
+  </div>
+
+  <div className="col-md-4 mb-2">
+    <select
+      className="form-select"
+      value={cityFilter}
+      onChange={(e) => setCityFilter(e.target.value)}
+    >
+      <option value="">All Cities</option>
+
+      {[
+        ...new Set(
+          temples
+            .filter(
+              (t) =>
+                !stateFilter ||
+                t.state === stateFilter
+            )
+            .map((t) => t.city)
+        ),
+      ].map((city) => (
+        <option key={city} value={city}>
+          {city}
+        </option>
+      ))}
+    </select>
+  </div>
+
+</div>
+
       <div className="row">
-        {temples.map((temple) => (
+
+  {filteredTemples.length === 0 ? (
+    <div className="col-12">
+      <div className="alert alert-warning">
+        No temples found.
+      </div>
+    </div>
+  ) : (
+    filteredTemples.map((temple) => (
           <div className="col-md-4 mb-4" key={temple._id}>
             <div className="card h-100 shadow">
 
@@ -77,7 +179,8 @@ function Temples() {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      )}
       </div>
     </div>
   );

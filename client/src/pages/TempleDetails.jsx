@@ -43,26 +43,91 @@ function TempleDetails() {
     <div className="container mt-5">
 
       {/* Temple Details */}
-      <div className="card shadow mb-4">
-        <div className="card-body">
+      {/* Temple Details */}
 
-          <h2>{temple.name}</h2>
-          <hr />
+<div className="card shadow-lg border-0 mb-5">
+  <div className="row g-0">
 
-          <p><strong>Deity:</strong> {temple.deity}</p>
-          <p><strong>Location:</strong> {temple.city}, {temple.state}</p>
-          <p><strong>Address:</strong> {temple.address}</p>
-          <p><strong>Opening:</strong> {temple.openingTime}</p>
-          <p><strong>Closing:</strong> {temple.closingTime}</p>
-          <p><strong>Contact:</strong> {temple.contactNumber}</p>
+    <div className="col-lg-5">
 
-          <p>{temple.description}</p>
+      <img
+  src={
+    temple.images?.length
+      ? temple.images[0]
+      : "https://via.placeholder.com/600x400?text=Temple"
+  }
+  alt={temple.name}
+  className="img-fluid rounded-start"
+  style={{
+    height: "100%",
+    minHeight: "420px",
+    objectFit: "cover",
+  }}
+/>
 
-        </div>
+    </div>
+
+    <div className="col-lg-7">
+
+      <div className="card-body p-4">
+
+        <h2 className="fw-bold mb-3">
+          {temple.name}
+        </h2>
+
+        <p>
+          <strong>🛕 Deity:</strong> {temple.deity}
+        </p>
+
+        <p>
+          <strong>📍 Location:</strong>{" "}
+          {temple.city}, {temple.state}
+        </p>
+
+        <p>
+          <strong>🏠 Address:</strong>{" "}
+          {temple.address}
+        </p>
+
+        <p>
+          <strong>🕘 Opening:</strong>{" "}
+          {temple.openingTime}
+        </p>
+
+        <p>
+          <strong>🌙 Closing:</strong>{" "}
+          {temple.closingTime}
+        </p>
+
+        <p>
+          <strong>📞 Contact:</strong>{" "}
+          {temple.contactNumber}
+        </p>
+
+        <hr />
+
+        <h5>About Temple</h5>
+
+        <p className="text-muted">
+          {temple.description}
+        </p>
+
       </div>
 
+    </div>
+
+  </div>
+</div>
+
       {/* Slots */}
-      <h3 className="mb-3">Available Darshan Slots</h3>
+      <div className="text-center mb-5">
+  <h2 className="fw-bold">
+    Available Darshan Slots
+  </h2>
+  <p className="text-muted">
+    Choose your preferred darshan slot and book instantly.
+  </p>
+</div>
 
       <div className="row">
 
@@ -71,39 +136,63 @@ function TempleDetails() {
         ) : (
           slots.map((slot) => (
             <div className="col-md-6 mb-4" key={slot._id}>
-              <div className="card shadow h-100">
-
+              <div className="card shadow-lg border-0 h-100">
                 <div className="card-body">
 
-                  <h4>{slot.slotName}</h4>
+  <span className="badge bg-primary mb-3">
+    {new Date(slot.date).toLocaleDateString()}
+  </span>
 
-                  <p>
-                    <strong>Date:</strong>{" "}
-                    {new Date(slot.date).toLocaleDateString()}
-                  </p>
+  <h4 className="fw-bold">
+    {slot.slotName}
+  </h4>
 
-                  <p>
-                    <strong>Time:</strong>{" "}
-                    {slot.startTime} - {slot.endTime}
-                  </p>
+  <hr />
 
-                  <p>
-                    <strong>Price:</strong> ₹{slot.price}
-                  </p>
+  <p>
+    🕘 <strong>Time:</strong><br />
+    {slot.startTime} - {slot.endTime}
+  </p>
 
-                  <p>
-                    <strong>Available Seats:</strong>{" "}
-                    {slot.availableSeats}
-                  </p>
+  <p>
+    💰 <strong>Price:</strong><br />
+    ₹{slot.price}
+  </p>
 
-                  <Link
-                    to={`/booking/${slot._id}`}
-                    className="btn btn-success"
-                  >
-                    Book Now
-                  </Link>
+  <p>
+    👥 <strong>Seats Left:</strong><br />
 
-                </div>
+    <span
+      className={`badge ${
+        slot.availableSeats > 100
+          ? "bg-success"
+          : slot.availableSeats > 20
+          ? "bg-warning text-dark"
+          : "bg-danger"
+      }`}
+    >
+      {slot.availableSeats}
+    </span>
+
+  </p>
+
+  {slot.availableSeats > 0 ? (
+  <Link
+    to={`/booking/${slot._id}`}
+    className="btn btn-success w-100"
+  >
+    Book Now
+  </Link>
+) : (
+  <button
+    className="btn btn-danger w-100"
+    disabled
+  >
+    Slot Full
+  </button>
+)}
+
+</div>
 
               </div>
             </div>

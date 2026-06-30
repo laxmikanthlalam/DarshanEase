@@ -1,6 +1,7 @@
 const {
   createTemple,
   getAllTemples,
+  getFeaturedTemples,
   getTempleById,
   updateTemple,
   deleteTemple,
@@ -28,6 +29,24 @@ const createTempleController = async (req, res) => {
 const getAllTemplesController = async (req, res) => {
   try {
     const temples = await getAllTemples();
+
+    res.status(200).json({
+      success: true,
+      count: temples.length,
+      data: temples,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// ⭐ Get Featured Temples (Home Page)
+const getFeaturedTemplesController = async (req, res) => {
+  try {
+    const temples = await getFeaturedTemples();
 
     res.status(200).json({
       success: true,
@@ -118,6 +137,7 @@ const deleteTempleController = async (req, res) => {
 module.exports = {
   createTempleController,
   getAllTemplesController,
+  getFeaturedTemplesController,
   getTempleByIdController,
   updateTempleController,
   deleteTempleController,

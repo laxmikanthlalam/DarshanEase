@@ -55,7 +55,7 @@ function Navbar() {
                     My Bookings
                   </Link>
                 </li>
-
+              
                 <li className="nav-item">
                   <Link className="nav-link" to="/dashboard">
                     Dashboard
@@ -97,6 +97,11 @@ function Navbar() {
                 </button>
 
                 <ul className="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <Link className="dropdown-item" to="/profile">
+                      👤 My Profile
+                    </Link>
+                    </li>
                   <li>
                     <Link className="dropdown-item" to="/dashboard">
                       Dashboard

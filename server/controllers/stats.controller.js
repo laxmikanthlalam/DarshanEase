@@ -1,14 +1,14 @@
 const {
-  getDashboardStats,
-} = require("../services/admin.service");
+  getPublicStats,
+} = require("../services/stats.service");
 
-const getDashboard = async (req, res) => {
+const getStats = async (req, res) => {
   try {
-    const dashboard = await getDashboardStats();
+    const stats = await getPublicStats();
 
     res.status(200).json({
       success: true,
-      data: dashboard,
+      data: stats,
     });
   } catch (error) {
     res.status(500).json({
@@ -19,5 +19,5 @@ const getDashboard = async (req, res) => {
 };
 
 module.exports = {
-  getDashboard,
+  getStats,
 };

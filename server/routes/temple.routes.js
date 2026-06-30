@@ -7,12 +7,26 @@ const adminMiddleware = require("../middleware/admin.middleware");
 const {
   createTempleController,
   getAllTemplesController,
+  getFeaturedTemplesController,
   getTempleByIdController,
   updateTempleController,
   deleteTempleController,
 } = require("../controllers/temple.controller");
 
-// Create Temple (Admin Only)
+// ================= PUBLIC ROUTES =================
+
+// Get Featured Temples (Home Page)
+router.get("/featured", getFeaturedTemplesController);
+
+// Get All Temples
+router.get("/", getAllTemplesController);
+
+// Get Temple By ID
+router.get("/:id", getTempleByIdController);
+
+// ================= ADMIN ROUTES =================
+
+// Create Temple
 router.post(
   "/",
   authMiddleware,
@@ -20,13 +34,7 @@ router.post(
   createTempleController
 );
 
-// Get All Temples (Public)
-router.get("/", getAllTemplesController);
-
-// Get Temple By ID (Public)
-router.get("/:id", getTempleByIdController);
-
-// Update Temple (Admin Only)
+// Update Temple
 router.put(
   "/:id",
   authMiddleware,
@@ -34,7 +42,7 @@ router.put(
   updateTempleController
 );
 
-// Delete Temple (Admin Only)
+// Delete Temple
 router.delete(
   "/:id",
   authMiddleware,

@@ -10,6 +10,7 @@ import MyBookings from "../pages/MyBookings";
 import TempleDetails from "../pages/TempleDetails";
 import Booking from "../pages/Booking";
 import NotFound from "../pages/NotFound";
+import Profile from "../pages/Profile";
 
 // Route Protection
 import PrivateRoute from "./PrivateRoute";
@@ -92,6 +93,14 @@ function AppRoutes() {
           </PrivateRoute>
         }
       />
+      <Route
+  path="/profile"
+  element={
+    <PrivateRoute>
+      <Profile />
+    </PrivateRoute>
+  }
+/>
 
       {/* ================= ADMIN ROUTES ================= */}
 

@@ -1,6 +1,40 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import api from "../services/api";
 
 function Home() {
+  const token = localStorage.getItem("token");
+  const [stats, setStats] = useState({
+  totalUsers: 0,
+  totalTemples: 0,
+  totalSlots: 0,
+  totalBookings: 0,
+});
+const [featuredTemples, setFeaturedTemples] = useState([]);
+useEffect(() => {
+  fetchStats();
+  fetchFeaturedTemples();
+}, []);
+
+const fetchStats = async () => {
+  try {
+    const response = await api.get("/stats");
+
+    setStats(response.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const fetchFeaturedTemples = async () => {
+  try {
+    const response = await api.get("/temples/featured");
+
+    setFeaturedTemples(response.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
   return (
     <>
       {/* Hero Section */}
@@ -32,12 +66,21 @@ function Home() {
               Explore Temples
             </Link>
 
-            <Link
-              to="/register"
-              className="btn btn-outline-light btn-lg"
-            >
-              Get Started
-            </Link>
+            {token ? (
+  <Link
+    to="/temples"
+    className="btn btn-outline-light btn-lg"
+  >
+    Book Now
+  </Link>
+) : (
+  <Link
+    to="/register"
+    className="btn btn-outline-light btn-lg"
+  >
+    Get Started
+  </Link>
+)}
           </div>
         </div>
       </section>
@@ -48,50 +91,185 @@ function Home() {
 
           <div className="row text-center">
 
-            <div className="col-md-3 mb-4">
-              <div className="card shadow border-0">
-                <div className="card-body">
-                  <h1>🛕</h1>
-                  <h2 className="fw-bold">150+</h2>
-                  <p>Temples</p>
-                </div>
-              </div>
+           <div className="col-md-3 mb-4">
+  <div className="card shadow border-0">
+    <div className="card-body">
+      <h1>🛕</h1>
+      <h2 className="fw-bold">{stats.totalTemples}</h2>
+      <p>Temples</p>
+    </div>
+  </div>
+</div>
+
+<div className="col-md-3 mb-4">
+  <div className="card shadow border-0">
+    <div className="card-body">
+      <h1>🎫</h1>
+      <h2 className="fw-bold">{stats.totalBookings}</h2>
+      <p>Bookings</p>
+    </div>
+  </div>
+</div>
+
+<div className="col-md-3 mb-4">
+  <div className="card shadow border-0">
+    <div className="card-body">
+      <h1>👥</h1>
+      <h2 className="fw-bold">{stats.totalUsers}</h2>
+      <p>Registered Users</p>
+    </div>
+  </div>
+</div>
+
+<div className="col-md-3 mb-4">
+  <div className="card shadow border-0">
+    <div className="card-body">
+      <h1>📅</h1>
+      <h2 className="fw-bold">{stats.totalSlots}</h2>
+      <p>Available Slots</p>
+    </div>
+  </div>
+</div>
+          </div>
+
+        </div>
+      </section>
+      {/* Featured Temples */}
+
+<section className="py-5">
+  <div className="container">
+
+    <h2 className="text-center fw-bold mb-5">
+      Popular Temples
+    </h2>
+
+    <div className="row">
+
+      {featuredTemples.map((temple) => (
+
+        <div
+          className="col-lg-4 col-md-6 mb-4"
+          key={temple._id}
+        >
+
+          <div className="card shadow h-100 border-0">
+
+            <img
+  src={
+    temple.images?.length
+      ? temple.images[0]
+      : "https://via.placeholder.com/600x400?text=Temple"
+  }
+  className="card-img-top"
+  alt={temple.name}
+  style={{
+    height: "240px",
+    objectFit: "cover",
+  }}
+/>
+
+            <div className="card-body">
+
+              <h5 className="fw-bold">
+                {temple.name}
+              </h5>
+
+              <p className="text-muted">
+                📍 {temple.city}, {temple.state}
+              </p>
+
+              <p>
+  {temple.description
+    ? temple.description.substring(0, 120) + "..."
+    : "No description available."}
+</p>
+
             </div>
 
-            <div className="col-md-3 mb-4">
-              <div className="card shadow border-0">
-                <div className="card-body">
-                  <h1>🎫</h1>
-                  <h2 className="fw-bold">10K+</h2>
-                  <p>Bookings</p>
-                </div>
-              </div>
-            </div>
+            <div className="card-footer bg-white border-0">
 
-            <div className="col-md-3 mb-4">
-              <div className="card shadow border-0">
-                <div className="card-body">
-                  <h1>😊</h1>
-                  <h2 className="fw-bold">5K+</h2>
-                  <p>Happy Devotees</p>
-                </div>
-              </div>
-            </div>
+              <Link
+                to={`/temple/${temple._id}`}
+                className="btn btn-primary w-100"
+              >
+                View Details
+              </Link>
 
-            <div className="col-md-3 mb-4">
-              <div className="card shadow border-0">
-                <div className="card-body">
-                  <h1>⏰</h1>
-                  <h2 className="fw-bold">24×7</h2>
-                  <p>Online Booking</p>
-                </div>
-              </div>
             </div>
 
           </div>
 
         </div>
-      </section>
+
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+{/* How It Works */}
+<section className="py-5 bg-light">
+  <div className="container">
+
+    <h2 className="text-center fw-bold mb-5">
+      How It Works
+    </h2>
+
+    <div className="row text-center">
+
+      <div className="col-md-3 mb-4">
+        <div className="card border-0 shadow h-100">
+          <div className="card-body">
+            <h1>📝</h1>
+            <h4>Register</h4>
+            <p>
+              Create your DarshanEase account in just a few steps.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-3 mb-4">
+        <div className="card border-0 shadow h-100">
+          <div className="card-body">
+            <h1>🛕</h1>
+            <h4>Select Temple</h4>
+            <p>
+              Browse temples and choose the one you want to visit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-3 mb-4">
+        <div className="card border-0 shadow h-100">
+          <div className="card-body">
+            <h1>📅</h1>
+            <h4>Choose Slot</h4>
+            <p>
+              Pick your preferred darshan date and time slot.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-3 mb-4">
+        <div className="card border-0 shadow h-100">
+          <div className="card-body">
+            <h1>🙏</h1>
+            <h4>Book Darshan</h4>
+            <p>
+              Confirm your booking and receive instant confirmation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* Features */}
       <section className="py-5">
