@@ -50,11 +50,13 @@ function Navbar() {
             {/* Logged In User */}
             {token && (
   <>
-    <li className="nav-item">
-      <Link className="nav-link" to="/bookings">
-        My Bookings
-      </Link>
-    </li>
+    {user?.role !== "ADMIN" && (
+      <li className="nav-item">
+        <Link className="nav-link" to="/bookings">
+          My Bookings
+        </Link>
+      </li>
+    )}
 
     {user?.role === "ADMIN" && (
       <li className="nav-item">
@@ -95,11 +97,13 @@ function Navbar() {
                       👤 My Profile
                     </Link>
                     </li>
-                  <li>
-                    <Link className="dropdown-item" to="/bookings">
-                      My Bookings
-                    </Link>
-                  </li>
+                  {user?.role !== "ADMIN" && (
+  <li>
+    <Link className="dropdown-item" to="/bookings">
+      My Bookings
+    </Link>
+  </li>
+)}
 
                   {user?.role === "ADMIN" && (
                     <>
