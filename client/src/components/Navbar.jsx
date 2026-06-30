@@ -1,11 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Navbar() {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="container">
+  const navigate = useNavigate();
 
-        <Link className="navbar-brand fw-bold" to="/">
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    toast.success("Logged out successfully");
+
+    navigate("/");
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+      <div className="container">
+        <Link className="navbar-brand fw-bold fs-4" to="/">
           🛕 DarshanEase
         </Link>
 
@@ -19,8 +33,8 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbar">
-          <ul className="navbar-nav ms-auto">
-
+          <ul className="navbar-nav ms-auto align-items-center">
+            {/* Always Visible */}
             <li className="nav-item">
               <Link className="nav-link" to="/">
                 Home
@@ -33,27 +47,99 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/bookings">
-                My Bookings
-              </Link>
-            </li>
+            {/* Logged In User */}
+            {token && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/bookings">
+                    My Bookings
+                  </Link>
+                </li>
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/dashboard">
+                    Dashboard
+                  </Link>
+                </li>
 
-            <li className="nav-item">
-              <Link className="btn btn-warning ms-2" to="/register">
-                Register
-              </Link>
-            </li>
+                {user?.role === "ADMIN" && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/admin">
+                      Admin
+                    </Link>
+                  </li>
+                )}
+              </>
+            )}
 
+            {/* Guest */}
+            {!token ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+
+                <li className="nav-item ms-2">
+                  <Link className="btn btn-warning" to="/register">
+                    Register
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item dropdown ms-3">
+                <button
+                  className="btn btn-light dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                >
+                  👤 {user?.fullName}
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <Link className="dropdown-item" to="/dashboard">
+                      Dashboard
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link className="dropdown-item" to="/bookings">
+                      My Bookings
+                    </Link>
+                  </li>
+
+                  {user?.role === "ADMIN" && (
+                    <>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+
+                      <li>
+                        <Link className="dropdown-item" to="/admin">
+                          Admin Dashboard
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+
+                  <li>
+                    <button
+                      className="dropdown-item text-danger"
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            )}
           </ul>
         </div>
-
       </div>
     </nav>
   );

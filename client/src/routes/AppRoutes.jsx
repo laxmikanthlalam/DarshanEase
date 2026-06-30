@@ -11,6 +11,11 @@ import TempleDetails from "../pages/TempleDetails";
 import Booking from "../pages/Booking";
 import NotFound from "../pages/NotFound";
 
+// Route Protection
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import GuestRoute from "./GuestRoute";
+
 // Admin Layout
 import AdminLayout from "../layouts/AdminLayout";
 
@@ -21,50 +26,134 @@ import AdminSlots from "../pages/admin/Slots";
 import AdminBookings from "../pages/admin/Bookings";
 import AddTemple from "../pages/admin/AddTemple";
 import EditTemple from "../pages/admin/EditTemple";
+import AddSlot from "../pages/admin/AddSlot";
+import EditSlot from "../pages/admin/EditSlot";
 
 function AppRoutes() {
   return (
     <Routes>
-      {/* ================= USER ROUTES ================= */}
+
+      {/* ================= PUBLIC ROUTES ================= */}
 
       <Route path="/" element={<Home />} />
 
       <Route path="/temples" element={<Temples />} />
 
-      <Route path="/temple/:id" element={<TempleDetails />} />
+      <Route
+        path="/temple/:id"
+        element={<TempleDetails />}
+      />
 
-      <Route path="/booking/:slotId" element={<Booking />} />
+      {/* ================= GUEST ROUTES ================= */}
 
-      <Route path="/bookings" element={<MyBookings />} />
+      <Route
+        path="/login"
+        element={
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
+        }
+      />
 
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/register"
+        element={
+          <GuestRoute>
+            <Register />
+          </GuestRoute>
+        }
+      />
 
-      <Route path="/register" element={<Register />} />
+      {/* ================= PROTECTED USER ROUTES ================= */}
 
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/booking/:slotId"
+        element={
+          <PrivateRoute>
+            <Booking />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/bookings"
+        element={
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        }
+      />
 
       {/* ================= ADMIN ROUTES ================= */}
 
-      <Route path="/admin" element={<AdminLayout />}>
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
         <Route index element={<AdminDashboard />} />
 
-        <Route path="temples" element={<AdminTemples />} />
+        {/* Temple Management */}
 
-        <Route path="add-temple" element={<AddTemple />} />
+        <Route
+          path="temples"
+          element={<AdminTemples />}
+        />
+
+        <Route
+          path="add-temple"
+          element={<AddTemple />}
+        />
 
         <Route
           path="edit-temple/:id"
           element={<EditTemple />}
         />
 
-        <Route path="slots" element={<AdminSlots />} />
+        {/* Slot Management */}
 
-        <Route path="bookings" element={<AdminBookings />} />
+        <Route
+          path="slots"
+          element={<AdminSlots />}
+        />
+
+        <Route
+          path="add-slot"
+          element={<AddSlot />}
+        />
+
+        <Route
+          path="edit-slot/:id"
+          element={<EditSlot />}
+        />
+
+        {/* Booking Management */}
+
+        <Route
+          path="bookings"
+          element={<AdminBookings />}
+        />
       </Route>
 
       {/* ================= 404 ================= */}
 
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
+
     </Routes>
   );
 }

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 
-function AddSlot() {
+function EditSlot() {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [temples, setTemples] = useState([]);
@@ -21,6 +22,7 @@ function AddSlot() {
 
   useEffect(() => {
     fetchTemples();
+    fetchSlot();
   }, []);
 
   const fetchTemples = async () => {
@@ -30,6 +32,28 @@ function AddSlot() {
     } catch (error) {
       console.log(error);
       toast.error("Unable to load temples");
+    }
+  };
+
+  const fetchSlot = async () => {
+    try {
+      const response = await api.get(`/slots/${id}`);
+
+      const slot = response.data.data;
+
+      setFormData({
+        temple: slot.temple?._id || "",
+        slotName: slot.slotName,
+        date: slot.date.split("T")[0],
+        startTime: slot.startTime,
+        endTime: slot.endTime,
+        price: slot.price,
+        capacity: slot.capacity,
+        availableSeats: slot.availableSeats,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Unable to load slot");
     }
   };
 
@@ -44,14 +68,14 @@ function AddSlot() {
     e.preventDefault();
 
     try {
-      await api.post("/slots", {
+      await api.put(`/slots/${id}`, {
         ...formData,
         price: Number(formData.price),
         capacity: Number(formData.capacity),
         availableSeats: Number(formData.availableSeats),
       });
 
-      toast.success("Slot Added Successfully");
+      toast.success("Slot Updated Successfully");
 
       navigate("/admin/slots");
     } catch (error) {
@@ -59,7 +83,7 @@ function AddSlot() {
 
       toast.error(
         error.response?.data?.message ||
-          "Unable to add slot"
+          "Unable to update slot"
       );
     }
   };
@@ -71,7 +95,7 @@ function AddSlot() {
 
         <div className="card-body">
 
-          <h2 className="mb-4">Add Slot</h2>
+          <h2 className="mb-4">Edit Slot</h2>
 
           <form onSubmit={handleSubmit}>
 
@@ -197,8 +221,8 @@ function AddSlot() {
 
             </div>
 
-            <button className="btn btn-success">
-              Add Slot
+            <button className="btn btn-primary">
+              Update Slot
             </button>
 
           </form>
@@ -211,4 +235,4 @@ function AddSlot() {
   );
 }
 
-export default AddSlot;
+export default EditSlot;

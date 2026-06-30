@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import api from "../../services/api";
 
 function Temples() {
@@ -21,18 +22,29 @@ function Temples() {
   };
 
   const deleteTemple = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this temple?"
-    );
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to recover this temple!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, Delete",
+      cancelButtonText: "Cancel",
+    });
 
-    if (!confirmDelete) {
-      return;
-    }
+    if (!result.isConfirmed) return;
 
     try {
       await api.delete(`/temples/${id}`);
 
-      toast.success("Temple Deleted Successfully");
+      await Swal.fire({
+        title: "Deleted!",
+        text: "Temple has been deleted successfully.",
+        icon: "success",
+        timer: 1800,
+        showConfirmButton: false,
+      });
 
       fetchTemples();
     } catch (error) {
@@ -47,7 +59,6 @@ function Temples() {
 
   return (
     <div className="container-fluid">
-
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Temple Management</h2>
 
@@ -60,7 +71,6 @@ function Temples() {
       </div>
 
       <table className="table table-bordered table-hover">
-
         <thead className="table-dark">
           <tr>
             <th>#</th>
@@ -73,7 +83,6 @@ function Temples() {
         </thead>
 
         <tbody>
-
           {temples.length === 0 ? (
             <tr>
               <td colSpan="6" className="text-center">
@@ -107,11 +116,8 @@ function Temples() {
               </tr>
             ))
           )}
-
         </tbody>
-
       </table>
-
     </div>
   );
 }
