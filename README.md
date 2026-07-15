@@ -1,91 +1,85 @@
-# 🛕 DarshanEase – Temple Darshan Booking System
+# 🛕 DarshanEase – Smart Temple Darshan Booking System
 
 <p align="center">
-  <img src="https://img.shields.io/badge/MERN-Full%20Stack-green?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react" />
-  <img src="https://img.shields.io/badge/Node.js-Backend-339933?style=for-the-badge&logo=node.js" />
-  <img src="https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb" />
-  <img src="https://img.shields.io/badge/Express.js-API-000000?style=for-the-badge&logo=express" />
+
+# 🛕 DarshanEase
+
+### A Full Stack MERN Web Application for Smart Temple Darshan Management
+
+Simplifying Temple Darshan Booking Through Digital Transformation
+
 </p>
 
 ---
 
 ## 📖 Overview
 
-**DarshanEase** is a full-stack MERN web application designed to modernize the temple darshan booking process by replacing traditional manual booking methods with a secure online platform.
+DarshanEase is a full-stack MERN web application designed to modernize the temple darshan booking process through a secure, scalable, and user-friendly digital platform.
 
-The system enables devotees to explore temples, view available darshan slots, reserve tickets online, manage bookings, and download booking confirmations. It also provides a comprehensive admin dashboard for managing temples, darshan slots, users, and bookings.
+The application allows devotees to explore temples, check available darshan slots, reserve tickets online, download booking confirmations, and manage their bookings conveniently from anywhere. It also provides a comprehensive administrative dashboard for managing temples, darshan slots, users, bookings, and system analytics.
 
 ---
 
-## 🚀 Problem Statement
+# 🚀 Problem Statement
 
-Traditional temple darshan booking often involves:
+Traditional temple darshan booking systems often involve:
 
 - Long waiting queues
 - Manual ticket booking
-- Limited slot availability information
+- Limited visibility of slot availability
 - Time-consuming administrative processes
-- Poor booking management
+- Inefficient booking management
 
-DarshanEase addresses these challenges through a secure and efficient online booking platform.
+These challenges lead to inconvenience for devotees and increased operational effort for temple authorities.
 
 ---
 
-## 💡 Solution
+# 💡 Our Solution
 
-DarshanEase digitizes the complete temple booking workflow by providing:
-
-- Online temple exploration
-- Real-time darshan slot availability
-- Secure authentication
-- Online booking & cancellation
-- PDF ticket generation
-- Admin management system
+DarshanEase digitizes the complete temple booking workflow through a secure online platform where devotees can browse temples, view real-time darshan slot availability, reserve tickets, download booking receipts, and manage bookings efficiently. The system also enables administrators to manage temples, slots, users, bookings, and platform statistics through a centralized dashboard.
 
 ---
 
 # ✨ Features
 
-## 👤 User Features
+## 👤 Devotee Features
 
-- User Registration & Login
+- Secure User Registration & Login
 - JWT Authentication
 - Browse Available Temples
-- Temple Search & Filtering
+- Search & Filter Temples
 - View Temple Details
-- Real-Time Slot Availability
-- Book Darshan Tickets
-- Cancel Bookings
-- Download PDF Ticket
-- User Profile Management
-- Responsive UI
+- Real-Time Darshan Slot Availability
+- Online Darshan Booking
+- Booking Cancellation
+- PDF Ticket Generation
+- Booking History
+- Responsive User Interface
 
 ---
 
-## 👨‍💼 Admin Features
+## 👨‍💼 Administrator Features
 
 - Secure Admin Login
 - Dashboard Analytics
-- Temple Management (CRUD)
+- Temple Management
 - Darshan Slot Management
 - Booking Management
-- Revenue Overview
-- User Statistics
-- Charts & Reports
+- User Management
+- Revenue Statistics
+- System Reports
 
 ---
 
-# 🛠 Tech Stack
+# 🛠️ Technology Stack
 
 ## Frontend
 
 - React.js
 - React Router DOM
-- Bootstrap 5
+- Bootstrap
 - Axios
 - React Toastify
-- React Icons
 
 ## Backend
 
@@ -103,9 +97,29 @@ DarshanEase digitizes the complete temple booking workflow by providing:
 
 ## Deployment
 
-- Frontend → Vercel
-- Backend → Render
-- Database → MongoDB Atlas
+- Vercel (Frontend)
+- Render (Backend)
+
+## Development Tools
+
+- Git
+- GitHub
+- Visual Studio Code
+- Postman
+
+---
+
+# 🏗️ System Architecture
+
+The application follows a modular MERN architecture consisting of:
+
+- React.js Frontend
+- REST API using Express.js
+- MongoDB Atlas Database
+- JWT Authentication
+- Role-Based Authorization
+- PDF Ticket Generation
+- Cloud Deployment using Vercel & Render
 
 ---
 
@@ -115,25 +129,29 @@ DarshanEase digitizes the complete temple booking workflow by providing:
 DarshanEase
 │
 ├── client
-│   ├── src
 │   ├── public
+│   ├── src
 │   └── package.json
 │
 ├── server
+│   ├── config
 │   ├── controllers
 │   ├── middleware
 │   ├── models
 │   ├── routes
 │   ├── services
-│   ├── config
+│   ├── validations
+│   ├── utils
 │   └── server.js
+│
+├── screenshots
 │
 └── README.md
 ```
 
 ---
 
-# ⚙ Installation
+# ⚙️ Installation Guide
 
 ## Clone Repository
 
@@ -141,7 +159,7 @@ DarshanEase
 git clone https://github.com/laxmikanthlalam/DarshanEase.git
 ```
 
-```
+```bash
 cd DarshanEase
 ```
 
@@ -154,19 +172,19 @@ cd server
 npm install
 ```
 
-Create `.env`
+Create a `.env` file inside the **server** folder.
 
 ```env
 PORT=5000
 
-MONGODB_URI=YOUR_MONGODB_CONNECTION_STRING
+MONGODB_URI=YOUR_MONGODB_ATLAS_CONNECTION_STRING
 
 JWT_SECRET=YOUR_SECRET_KEY
 
 CLIENT_URL=http://localhost:5173
 ```
 
-Start Backend
+Run Backend
 
 ```bash
 npm run dev
@@ -181,13 +199,13 @@ cd client
 npm install
 ```
 
-Create `.env`
+Create a `.env` file inside the **client** folder.
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-Start Frontend
+Run Frontend
 
 ```bash
 npm run dev
@@ -195,25 +213,13 @@ npm run dev
 
 ---
 
-# 🔐 Authentication
+# 🔐 Authentication & Security
 
-- JWT Based Authentication
-- Password Hashing using bcrypt
+- JWT Authentication
+- Password Encryption using bcrypt
 - Protected Routes
 - Role-Based Authorization
-
----
-
-# 📊 Admin Dashboard
-
-The Admin Dashboard provides:
-
-- Total Users
-- Total Temples
-- Total Slots
-- Total Bookings
-- Revenue Statistics
-- Charts & Analytics
+- Secure REST APIs
 
 ---
 
@@ -226,111 +232,171 @@ The Admin Dashboard provides:
 
 ### Users
 
-- Profile
+- View Profile
 - Update Profile
 
 ### Temples
 
-- Create Temple
-- Update Temple
-- Delete Temple
 - View Temples
+- View Temple Details
+- Manage Temples (Admin)
 
-### Slots
+### Darshan Slots
 
-- Create Slot
-- Update Slot
-- Delete Slot
+- View Slots
+- Add Slots
+- Update Slots
+- Delete Slots
 
 ### Bookings
 
-- Book Slot
-- Cancel Booking
+- Book Darshan
 - View Bookings
-- Download Ticket
+- Cancel Booking
+- Download PDF Ticket
 
 ### Admin
 
 - Dashboard
 - Statistics
+- Booking Management
+- User Management
 
 ---
 
-# 📸 Screenshots
+# 📸 Application Screenshots
 
-> Add screenshots here after deployment.
+> **Add screenshots inside the `screenshots` folder and update the image paths below.**
 
-- Home Page
-- Temple Listing
-- Temple Details
-- Booking Page
-- My Bookings
-- User Profile
-- Admin Dashboard
-- Temple Management
-- Slot Management
+## 🏠 Home Page
+
+```markdown
+![Home](screenshots/home.png)
+```
+
+---
+
+## 🔐 Login
+
+```markdown
+![Login](screenshots/login.png)
+```
+
+---
+
+## 📝 Registration
+
+```markdown
+![Register](screenshots/register.png)
+```
+
+---
+
+## 🛕 Temple Listing
+
+```markdown
+![Temples](screenshots/temples.png)
+```
+
+---
+
+## 🎫 Booking Page
+
+```markdown
+![Booking](screenshots/booking.png)
+```
+
+---
+
+## 📄 My Bookings
+
+```markdown
+![My Bookings](screenshots/mybookings.png)
+```
+
+---
+
+## 📊 Admin Dashboard
+
+```markdown
+![Dashboard](screenshots/dashboard.png)
+```
 
 ---
 
 # 🌍 Live Demo
 
-### Frontend
+## 🚀 Frontend
 
-```
-https://darshan-ease-sepia.vercel.app
-```
+https://darshan-ease-sepia.vercel.app/
 
-### Backend API
+---
 
-```
-https://darshanease-backend-e74x.onrender.com
-```
+## ⚙️ Backend API
+
+https://darshanease-backend-e74x.onrender.com/
 
 ---
 
 # 🔮 Future Enhancements
 
-- Online Payment Gateway
+- Online Payment Gateway Integration
 - QR Code Based Entry
 - Email Notifications
 - SMS Alerts
-- Temple Reviews & Ratings
 - AI-Based Crowd Prediction
+- Temple Reviews & Ratings
 - Multi-language Support
 - Mobile Application
 
 ---
 
-# 👨‍💻 Developer
+# 👥 Project Team
 
-**Lalam Laxmikanth**
-
-B.Tech Computer Science & Engineering
-
-Aditya College of Engineering & Technology
-
-📧 Email: your-email@example.com
-
-🔗 GitHub: https://github.com/laxmikanthlalam
-
-🔗 LinkedIn: Add your LinkedIn profile
+| Name | Role |
+|------|------|
+| **Laxmikanth Lalam** | Team Lead |
+| **Medisetti Santosh** | Team Member |
+| **Meerza Kaneez Kulsum** | Team Member |
+| **Shankara Mani Sai Nookalamanthi** | Team Member |
+| **Akhila Priya Nookarapu** | Team Member |
 
 ---
 
-# ⭐ Support
+# 🤝 Contributing
 
-If you like this project,
+Contributions are welcome.
 
-🌟 Star this repository
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push the branch
+5. Create a Pull Request
 
-🍴 Fork it
+---
 
-🤝 Contribute
+# ⭐ Show Your Support
+
+If you found this project helpful,
+
+⭐ Star this repository
+
+🍴 Fork the repository
+
+🛕 Share it with others
 
 ---
 
 # 📜 License
 
-This project is developed for educational and learning purposes.
+This project was developed as part of the **APSSDC–SmartBridge Full Stack Development (MERN)** program for educational and learning purposes.
 
-© 2026 Lalam Laxmikanth. All Rights Reserved.
+---
+
+<p align="center">
+
+### ⭐ Thank you for visiting DarshanEase ⭐
+
+**Making Temple Darshan Booking Simple, Secure & Digital**
+
+</p>
