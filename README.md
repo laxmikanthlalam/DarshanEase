@@ -37,8 +37,6 @@ Digitizing the Temple Darshan Experience through Secure Online Booking, Real-Tim
 </p>
 
 ---
-
-## 📖 Overview
 ## 📖 Overview
 
 DarshanEase is a full-stack MERN web application designed to modernize the temple darshan booking process through a secure, scalable, and user-friendly digital platform.
