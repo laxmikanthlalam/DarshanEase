@@ -1,17 +1,44 @@
-# 🛕 DarshanEase – Smart Temple Darshan Booking System
+# 🛕 DarshanEase – Temple Darshan Booking System
 
 <p align="center">
 
-# 🛕 DarshanEase
+<img src="https://img.shields.io/badge/MERN-Full%20Stack-3FA037?style=for-the-badge" />
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
+<img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+<img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white" />
 
-### A Full Stack MERN Web Application for Smart Temple Darshan Management
+<br>
 
-Simplifying Temple Darshan Booking Through Digital Transformation
+<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" />
+<img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" />
+<img src="https://img.shields.io/badge/Bcrypt-4CAF50?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" />
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
 
+<br>
+
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" />
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black" />
+<img src="https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+
+</p>
+
+<p align="center">
+<b>A Full Stack MERN Web Application for Smart Temple Darshan Booking</b>
+</p>
+
+<p align="center">
+Digitizing the Temple Darshan Experience through Secure Online Booking, Real-Time Slot Management, and Efficient Administration.
 </p>
 
 ---
 
+## 📖 Overview
 ## 📖 Overview
 
 DarshanEase is a full-stack MERN web application designed to modernize the temple darshan booking process through a secure, scalable, and user-friendly digital platform.
