@@ -296,55 +296,42 @@ npm run dev
 ## 🏠 Home Page
 
 <img src="./screenshots/home.png" width="800">
----
+
 
 ## 🔐 Login
 
-```markdown
-![Login](screenshots/login.png)
-```
+<img src="./screenshots/login.png" width="800">
 
----
+
 
 ## 📝 Registration
 
-```markdown
-![Register](screenshots/register.png)
-```
+<img src="./screenshots/register.png" width="800">
 
----
+
 
 ## 🛕 Temple Listing
 
-```markdown
-![Temples](screenshots/temples.png)
-```
+<img src="./screenshots/temples.png" width="800">
 
----
 
 ## 🎫 Booking Page
 
-```markdown
-![Booking](screenshots/booking.png)
-```
+<img src="./screenshots/bookings.png" width="800">
 
----
+
 
 ## 📄 My Bookings
 
-```markdown
-![My Bookings](screenshots/mybookings.png)
-```
+<img src="./screenshots/mybookings.png" width="800">
 
----
+
 
 ## 📊 Admin Dashboard
 
-```markdown
-![Dashboard](screenshots/dashboard.png)
-```
+<img src="./screenshots/dashboard.png" width="800">
 
----
+
 
 # 🌍 Live Demo
 
