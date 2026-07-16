@@ -317,7 +317,7 @@ npm run dev
 
 ## 🎫 Booking Page
 
-<img src="./screenshots/bookings.png" width="800">
+<img src="./screenshots/booking.png" width="800">
 
 
 
