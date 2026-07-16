@@ -295,10 +295,7 @@ npm run dev
 
 ## 🏠 Home Page
 
-```markdown
-![Home](screenshots/home.png)
-```
-
+<img src="./screenshots/home.png" width="800">
 ---
 
 ## 🔐 Login
