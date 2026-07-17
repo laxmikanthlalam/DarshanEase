@@ -15,7 +15,15 @@ const userRoutes = require("./routes/user.routes");
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      process.env.CLIENT_URL,
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(morgan("dev"));
 

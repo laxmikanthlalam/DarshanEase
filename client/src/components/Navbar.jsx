@@ -19,9 +19,23 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div className="container">
-        <Link className="navbar-brand fw-bold fs-4" to="/">
-          🛕 DarshanEase
-        </Link>
+        <Link
+  className="navbar-brand d-flex align-items-center"
+  to="/"
+>
+  <img
+    src="/logo.png"
+    alt="DarshanEase"
+    style={{
+      height: "55px",
+      marginRight: "12px"
+    }}
+  />
+
+  <span className="fw-bold fs-4">
+    DarshanEase
+  </span>
+</Link>
 
         <button
           className="navbar-toggler"
