@@ -19,7 +19,20 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div className="container">
-<<span
+<Link className="navbar-brand d-flex align-items-center" to="/">
+  <img
+    src="/logo.png"
+    alt="DarshanEase"
+    style={{
+      width: "60px",
+      height: "60px",
+      borderRadius: "50%",
+      objectFit: "cover",
+      marginRight: "10px",
+    }}
+  />
+
+  <span
   className="fw-bold"
   style={{
     color: "#fff",
@@ -30,6 +43,7 @@ function Navbar() {
 >
   Darshan<span style={{ color: "#FFD700" }}>Ease</span>
 </span>
+</Link>
         <button
           className="navbar-toggler"
           type="button"
