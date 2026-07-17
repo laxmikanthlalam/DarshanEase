@@ -337,7 +337,7 @@ npm run dev
 
 ## 🚀 Frontend
 
-https://darshan-ease-sepia.vercel.app/
+https://darshan-ease-flax.vercel.app/
 
 ---
 
