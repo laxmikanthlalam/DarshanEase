@@ -347,6 +347,23 @@ https://darshanease-backend-e74x.onrender.com/
 
 ---
 
+# 📚 Project Documentation
+
+The complete project documentation, including reports, design documents, architecture, implementation details, and project resources, is available here.
+
+📄 **Google Drive Folder:**  
+https://drive.google.com/drive/folders/1H5Fx9qFubl7pWKYogQk5cSKuPMkGPMYH
+
+---
+
+# 🎥 Project Demo Video
+
+Watch the complete demonstration of DarshanEase, showcasing the application's features, booking workflow, admin dashboard, and overall functionality.
+
+🎬 **Google Drive Folder:**  
+https://drive.google.com/drive/folders/1hjQnIcPILFg-aOdIge7Cx5FaxYVfQXMG
+
+---
 # 🔮 Future Enhancements
 
 - Online Payment Gateway Integration
